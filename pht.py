@@ -369,7 +369,6 @@ def main() -> None:
 
     tokenizer = EHRTokenizer.load(tokenizer_path)
     builder = PatientHealthTimelineBuilder(data_dir=data_dir, tokenizer=tokenizer)
-    first_patient_id = next(iter(timelines)) if timelines else None
     first_patient_id = builder.get_patient_ids()[0] if builder.get_patient_ids() else None
     print(f"First patient id: {first_patient_id}, Anchor: {builder.anchors.get(first_patient_id)}")
     timelines = builder.build_patient_timelines([first_patient_id]) if first_patient_id else {}
